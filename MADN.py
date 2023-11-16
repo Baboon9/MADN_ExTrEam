@@ -3,9 +3,11 @@
 class MADNExtreme:
     gamestates = ["initializing","running","ending","setup"]
     currentState = gamestates[3]
-    def initialize():
+    def initialize(self):
         print("Initializing Game")
-        pass
+        self.board=Board()
+        self.board.generateBoard()
+
     def run():
         pass
     def end():
@@ -22,7 +24,7 @@ class MADNExtreme:
             print("You need to set reasonable parameters..")
             self.setup()
 
-        self.currentState = gameStates[0]
+        self.currentState = self.gamestates[0]
 
     
     def checkForGameSetupConstraints(self):
@@ -35,7 +37,20 @@ class MADNExtreme:
         return True
 
 class Board:
-    pass
+    def generateBoard(self):
+        self.houses = []
+        self.board = []
+        for player in range(game.playerCount):
+            self.houses.append(input("Please enter Playername: "))
+        for spot in self.houses:
+            for i in range(4 * (game.boardSize * 4 )):
+                self.board.append(0)
+        for i in range(game.playerCount):
+            self.board[i * 4 + game.boardSize * 4] = 1
+
+    def printBoard(self):
+        for i in self.board:
+            print(i)
 
 class Network:
     pass
@@ -52,6 +67,6 @@ print(game.gamestates)
 print("Current Game State:")
 print(game.currentState)
 game.setup()
-
-
+game.initialize()
+game.board.printBoard()
 
