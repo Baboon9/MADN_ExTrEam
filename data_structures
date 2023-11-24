@@ -1,0 +1,100 @@
+A game of Mensch Ärgere Dich Nicht is a tabletop game.
+It contains a board which in turns contains of 3 components, the houses for every player, the home to which their figures are to move to, and the playing field on which the game is taking place.
+
+The houses have each 4 spots for every figure of a player. The homes have 4 spots as well, again for every player. And the gaming board contains an exit and enter field for each player individually.
+That means that each player has 4 figures that are to move from the houses to the homes over the playing field. They enter at a specific field and exit on another.
+While beeing on the field they are to traverse through the game field. 
+
+The game field contains spots between each players enter field. These spots have a specific count. It should be around 12 field in between players.
+
+So I need some class constructions:
+###################################
+
+Game
+-------------------------------------------------------------------------------------------------------
+*		| game_states	| "initializeing","new","stop","continue","end","game_over","runing"
+1		| board		| Board
+player_count	| homes		| Home
+player_count	| players	| Player
+player_count	| houses	| houses
+player_count *4 | figures	| figure
+------------------------------------------------------------------------------------------------------
+initialize()
+new()
+start()
+stop()
+continue()
+run()
+end()
+gameOver()
+
+
+
+
+
+Board
+-------------------------------------------------------------------------------------------------------
+2-player_count 	| houses 	| type House
+1 		| field 	| type Field
+2-player_count 	| homes 	| type Home
+-------------------------------------------------------------------------------------------------------
+generateBoard()
+
+
+
+Figure
+-------------------------------------------------------------------------------------------------------
+1		| color		| int
+-------------------------------------------------------------------------------------------------------
+move()
+kick()
+remove()
+goIntoHouse()
+goIntoHome()
+
+
+Player
+-------------------------------------------------------------------------------------------------------
+1		| name 		| string
+-------------------------------------------------------------------------------------------------------
+
+
+
+Computer
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+Home
+-------------------------------------------------------------------------------------------------------
+1		| color		| string
+4		| spots		| Spot
+0-4		| figures	| Figure
+-------------------------------------------------------------------------------------------------------
+
+
+
+House
+-------------------------------------------------------------------------------------------------------
+1		| color		| string
+4		| spots		| Spot
+0-4		| figures	| Figure
+-------------------------------------------------------------------------------------------------------
+
+
+
+Field
+-------------------------------------------------------------------------------------------------------
+12*player_count	| spots		| Spot
+0-4*player_count| figures	| figure
+-------------------------------------------------------------------------------------------------------
+
+
+
+Spot
+-------------------------------------------------------------------------------------------------------
+1		| isFree	| Boolean
+0-1		| figureInSpot	| Figure
+-------------------------------------------------------------------------------------------------------
+
+
+

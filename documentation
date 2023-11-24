@@ -1,0 +1,10 @@
+First entry:
+	I've been buisy with recreating my pseudocode but it didn't work out, the whole architecture is fucked.
+	So I've been writing a simple game called Mau Mau, its a card game to get an Idea about how I should structure the game.
+	It will have a game state pattern most likely. 
+
+	I should learn to refractor my old code, but most of it is trash. IDK lets just jump right into it.
+
+	As I've learned it should be done like this: Start with the Datastructures, so I will create a file for that.
+
+
