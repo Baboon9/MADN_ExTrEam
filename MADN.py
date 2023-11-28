@@ -1,4 +1,5 @@
 import unittest
+import random
 
 class GameMethodsTests(unittest.TestCase):
 
@@ -19,7 +20,7 @@ class Game:
         print("Player", self.playerAtTurn, "is at turn.")
     
     def rollTheDice(self):
-        pass
+        return random.randrange(1,6)
 
     def moveFigure(self):
         pass
@@ -27,11 +28,34 @@ class Game:
     def checkFigureCollision(self):
         pass
 
-    def letPlayerDoHisTurn(self):
+    def setFigureInField(self):
         pass
 
-    def checkForPlayerFigureAvailanility(self):
-        pass
+    def letPlayerDoHisTurn(self):
+        #Lets wonder weather the player has to roll once or up to thrice
+        if self.checkFigureAvailability():
+            #may roll thrice
+            diceRolled = 0
+            while diceRolled not 3:
+                die = self.rollTheDice()
+                diceRolled = diceRolled +1
+                if die == 6:
+                    self.setFigureInField()
+        else:
+            print("What figure do you want to move?")
+            figureToMove = int(input())
+            die = self.rollTheDice()
+            self.moveFigure(figureToMove, die)
+            self.checkFigureCollision(figureToMove)
+            self.endPlayersTurn()
+
+
+
+    def checkForPlayerFigureAvailability(self):
+        if self.players[self.playerAtTurn].checkForAvailableFigures(self.board):
+            return False
+        else:
+            return True
 
     def checkForPlayerHasWon(self):
         pass
@@ -65,8 +89,6 @@ class Game:
                 self.figures.append(Figure(player.color))
 
         self.board.generateBoard(self.player_count)
-        
-        
 
         self.computer_player_count = int(input("Against how many Computer players do you want to play? Enter a number between 0-4: "))
         
@@ -119,6 +141,9 @@ class Board:
         self.houses=[]
         self.homes=[]
         self.field=[]
+
+    def getPlayersHomes(self, playerColor):
+        return self.houses[playerColor]
 
 
     def print(self):
@@ -187,6 +212,12 @@ class Player:
     def __init__(self, name, color):
         self.name=name
         self.color=color
+
+    def checkForAvailableFigures(self, board):
+        if len(board.getPlayersHomes(self.color)) == 4:
+            return True
+        else:
+            return False
 
 class Computer:
     def __init__(self):
