@@ -8,3 +8,20 @@ First entry:
 	As I've learned it should be done like this: Start with the Datastructures, so I will create a file for that.
 
 
+Second entry:
+	Okay, lets recall what happend last time.. I made the datastructures as planned, now it is time to do the algorythmitics.. That is the tricky part.
+	I need to do some pseudocode..
+	Well, in the game of Mensch Ärgere Dich Nicht, you have to move figures and you have a 6 sided die. The die gets rolled at least once every turn. 
+	But sometimes the die gets rolled up to 3 times.
+	In the beginning of the game, when the player has no figure in field or when every figure is placed inside their homes it is time to get at least 
+	one figure in the game, or in the field.
+	When the player has at least one figure in the field it is up to the player what he does. But when the figure become active and is in the field it has to move 
+	at least once, so that the entry point of the players base is not blocked.
+	When the entry point of the players base is not blocked it is up to the player what to do.
+	He must select the figure he wants to move.
+	When the figure which has been moved encounters another figure it is going to kick the other figure out of the field and that figure becomes
+	an inactive figure which means it gets back to the house of that player.
+	As soon as the player has moved his figure through the whole field and it enters the home it is locked in there and can not longer be threatened by any other figure.
+	But the figure has to exactly be at the right spot.
+	When all the figures are in the home area, perfectly placed, that player wins the game.
+	As soon as every player, except the last one has all their figures in their home field the game is over.
