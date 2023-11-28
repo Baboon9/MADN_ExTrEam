@@ -39,11 +39,18 @@ class Game:
     def moveFigure(self):
         pass
 
-    def checkFigureCollision(self):
-        pass
+    def checkFigureCollision(self, spot1, spot2):
+        print("Checking for collision..")
+        isCollided = not spot1.isEmpty() and not spot2.isEmpty()
+        print("Collision status:",isCollided)
+        return isCollided
 
     def setFigureInField(self):
         print("You rolled a 6, so you have to put a figure in the field, if your entry point is free.")
+        self.board.checkForFreeEntryPoint(self.player_at_turn)
+        entrypoint = self.board.field[self.player_at_turn]
+        self.checkFigureCollision(entrypoint,entrypoint)
+        self.board.setPlayersHouseFiguresInEntrypoint(self.player_at_turn, self)
 
     def letPlayerDoHisTurn(self):
         print("Now it is the players turn.")
@@ -64,8 +71,6 @@ class Game:
             self.moveFigure(figureToMove, die)
             self.checkFigureCollision(figureToMove)
             self.endPlayersTurn()
-
-
 
     def checkForPlayerFigureAvailability(self):
         print("Checking the players house weather it is full or not.")
@@ -166,7 +171,14 @@ class Board:
     def getPlayersHomes(self, playerColor):
         return self.houses[playerColor-1]
 
+    def setPlayersHouseFiguresInEntrypoint(self, player, game):
+        
+        figure = self.houses[player-1][len(self.houses[player-1])-1]
+        self.houses[player-1][0].setFigureIn(figure)
 
+    def checkForFreeEntryPoint(self, player):
+        return self.field[player].isEmpty()
+    
     def print(self):
         print()
         for house in self.houses:
@@ -204,7 +216,7 @@ class Board:
     def setInFigures(self,player_count,figures):
         for i in range(0,player_count):
             for j in range(0,4*player_count):
-                self.houses[i][int(j/player_count)].setInFigure(figures[j])
+                self.houses[i][int(j/player_count)].setFigureIn(figures[j])
 
         for spot in self.houses:
             print(spot)    
@@ -219,15 +231,20 @@ class Figure:
 
 class Spot:
     def __init__(self, figure):
-        self.figureAtSpot = figure
-    def setInFigure(self, figure):
-        self.figureAtSpot = figure
+        self.figure_at_spot = figure
+    def getFigure(self):
+        return self.figure_at_spot
+    def setFigureIn(self, figure):
+        self.figure_at_spot = figure
     def print(self):
-        if not self.figureAtSpot == None:
-            print(self.figureAtSpot.color,end="")
+        if not self.figure_at_spot == None:
+            print(self.figure_at_spot.color,end="")
         else:
             print("O",end="")
-
+    def removeFigure(self, figure):
+        self.figure_at_spot = None
+    def isEmpty(self):
+        return self.figure_at_spot == None
 
 class Player:
     def __init__(self, name, color):
