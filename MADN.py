@@ -9,18 +9,32 @@ class GameMethodsTests(unittest.TestCase):
             self.assertTrue(len(game.board.homes) == game.player_count, "Player Count not correct!" )
             self.assertTrue(len(game.board.field) == game.player_count  *12, "Game Field length is not right!" )
             self.assertTrue(len(game.figures) == game.player_count *4, "The amount of Figures is not correct!" )
+        
+        def test_gameArchitecture(self):
+            self.assertTrue(game.checkForPlayerAtTurn() == 1)
+            self.assertTrue(game.chekForGameOver() == False)
+            self.assertTrue(game.rollTheDice() <= 1 or game.rollTheDice() >= 6)
+            self.assertTrue(game.checkForPlayerFigureAvailability() == False)
+
 
 
 class Game:
     def checkForGameOver(self):
+        print("Checking weather the game is over or not..")
         if self.game_over:
+            print("The game is in deed over.")
             self.game_state = self.game_state[4]
+        else:
+            print("The game is not over yet.")
     
     def checkForPlayerAtTurn(self):
-        print("Player", self.playerAtTurn, "is at turn.")
+        print("Player", self.player_at_turn, "is at turn.")
     
     def rollTheDice(self):
-        return random.randrange(1,6)
+        print("Rolling the dice..")
+        die = random.randrange(1,7)
+        print("The dice rolled as",die,"eyes.")
+        return die
 
     def moveFigure(self):
         pass
@@ -29,18 +43,20 @@ class Game:
         pass
 
     def setFigureInField(self):
-        pass
+        print("You rolled a 6, so you have to put a figure in the field, if your entry point is free.")
 
     def letPlayerDoHisTurn(self):
+        print("Now it is the players turn.")
         #Lets wonder weather the player has to roll once or up to thrice
-        if self.checkFigureAvailability():
+        if not self.checkForPlayerFigureAvailability():
             #may roll thrice
             diceRolled = 0
-            while diceRolled not 3:
+            while diceRolled < 3:
                 die = self.rollTheDice()
                 diceRolled = diceRolled +1
                 if die == 6:
                     self.setFigureInField()
+                    self.endPlayersTurn()
         else:
             print("What figure do you want to move?")
             figureToMove = int(input())
@@ -52,16 +68,21 @@ class Game:
 
 
     def checkForPlayerFigureAvailability(self):
-        if self.players[self.playerAtTurn].checkForAvailableFigures(self.board):
+        print("Checking the players house weather it is full or not.")
+        if self.players[self.player_at_turn].checkForAvailableFigures(self.board):
+            print("The house is in deed full.")
             return False
         else:
+            print("There are figures on the field.")
             return True
 
     def checkForPlayerHasWon(self):
         pass
 
     def endPlayersTurn(self):
-        pass
+        self.player_at_turn = self.player_at_turn +1
+        self.player_at_turn = self.player_at_turn % self.player_count
+        input("Press Enter to end your turn.")
 
     def gameOver(self):
         pass
@@ -108,11 +129,11 @@ class Game:
         print("printing board..")
         self.print()
         self.game_over = False
-        self.playerAtTurn = 1
+        self.player_at_turn = 1
         while self.game_state == self.game_states[2]:
             #Has the game been finished, is it over?
             self.checkForGameOver()
-            if self.game_state = self.gamestates[4]:
+            if self.game_state == self.game_states[4]:
                 self.showCredits()
                 self.newGame()
 
@@ -143,7 +164,7 @@ class Board:
         self.field=[]
 
     def getPlayersHomes(self, playerColor):
-        return self.houses[playerColor]
+        return self.houses[playerColor-1]
 
 
     def print(self):
