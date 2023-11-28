@@ -11,6 +11,42 @@ class GameMethodsTests(unittest.TestCase):
 
 
 class Game:
+    def checkForGameOver(self):
+        pass
+    
+    def checkForPlayerAtTurn(self):
+        pass
+    
+    def rollTheDice(self):
+        pass
+
+    def moveFigure(self):
+        pass
+
+    def checkFigureCollision(self):
+        pass
+
+    def letPlayerDoHisTurn(self):
+        pass
+
+    def checkForPlayerFigureAvailanility(self):
+        pass
+
+    def checkForPlayerHasWon(self):
+        pass
+
+    def endPlayersTurn(self):
+        pass
+
+    def gameOver(self):
+        pass
+
+    def newGame(self):
+        pass
+
+    def showCredits(self):
+        pass
+
     def __init__(self):
         self.game_states = ["initializing","starting","running","stopping","ending"]
         self.game_state = self.game_states[0]
