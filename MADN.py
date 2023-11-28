@@ -12,10 +12,11 @@ class GameMethodsTests(unittest.TestCase):
 
 class Game:
     def checkForGameOver(self):
-        pass
+        if self.game_over:
+            self.game_state = self.game_state[4]
     
     def checkForPlayerAtTurn(self):
-        pass
+        print("Player", self.playerAtTurn, "is at turn.")
     
     def rollTheDice(self):
         pass
@@ -45,7 +46,7 @@ class Game:
         pass
 
     def showCredits(self):
-        pass
+        Print("This Game was made by Tim-Ohle Schürheck, thanks for playing!")
 
     def __init__(self):
         self.game_states = ["initializing","starting","running","stopping","ending"]
@@ -84,9 +85,30 @@ class Game:
         print("Game is running..")
         print("printing board..")
         self.print()
-        #while self.game_state == self.game_states[2]:
-        #    pass
+        self.game_over = False
+        self.playerAtTurn = 1
+        while self.game_state == self.game_states[2]:
+            #Has the game been finished, is it over?
+            self.checkForGameOver()
+            if self.game_state = self.gamestates[4]:
+                self.showCredits()
+                self.newGame()
 
+            #Lets see who is at turn.
+            self.checkForPlayerAtTurn()
+            
+            #Now let that player do his turn.
+            self.letPlayerDoHisTurn()
+
+            #Finally end that players turn.
+            self.endPlayersTurn()
+
+            #Okay, so I wonder weather he has won yet.
+            self.checkForPlayerHasWon()
+
+            
+
+                
     def print(self):
         self.board.print()
 
