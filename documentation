@@ -25,3 +25,15 @@ Second entry:
 	But the figure has to exactly be at the right spot.
 	When all the figures are in the home area, perfectly placed, that player wins the game.
 	As soon as every player, except the last one has all their figures in their home field the game is over.
+
+Third entry:
+	Okay, so, I am not good at this, but who is good at this, when it comes about refactoring code..
+	There are some major design flaws in my code whish make it most unreadable. It is not clean code anymore.
+	It seems to be functional but it is very confusing and the head problem seems to be my coding style.
+	Most likely my coding style regarding OOP in python which I have to admit, on which I am not that great.
+	So first things first, I need to learn some more OOP techniques regarding python, so that is my mission for the next step.
+	I can hardly recall what I did last time so maybe this entry is more or less useless but it could be still interessting to
+	understand my journey on this way of programming.
+		When I am done with learning more about OOP in python I will try to refactor my code and make it easier to understand.
+	I hope that this will be helpful in the future.. Of this repository.
+
