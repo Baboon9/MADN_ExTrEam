@@ -37,3 +37,7 @@ Third entry:
 		When I am done with learning more about OOP in python I will try to refactor my code and make it easier to understand.
 	I hope that this will be helpful in the future.. Of this repository.
 
+Forth entry:
+	I have lost the generate board function, which is essential for the game anway I had to do it again with the new OOP Design I have implemented.
+	There is now a game package and every class has its own file, java style. I am not sure weather this is helpful but I jsut want to stick to 
+	the best OOP design guidlines. Every Class should have a single use that it does and nothing else. 
